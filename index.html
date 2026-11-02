@@ -1,0 +1,263 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Decision Making Dashboard | C10</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header class="topbar">
+        <div class="brand">
+            <div class="brand-icon">D</div>
+            <div>
+                <h1>Decision Making Dashboard</h1>
+                <p>GRADE 10 · MATHEMATICS · C10</p>
+            </div>
+        </div>
+        <span class="status">● Interactive Model</span>
+    </header>
+
+    <main class="container">
+
+        <section class="intro">
+            <div>
+                <p class="eyebrow">DECISION SCIENCE</p>
+                <h2>Decision Making Under Uncertainty</h2>
+                <p>Build, analyze and compare alternatives using decision criteria.</p>
+            </div>
+        </section>
+
+        <!-- EXAMPLES -->
+        <section class="panel">
+            <div class="section-heading">
+                <div>
+                    <span class="number">01</span>
+                    <h2>Decision Problem</h2>
+                </div>
+                <span class="tag">INPUT DATA</span>
+            </div>
+
+            <label for="exampleSelect">Choose a preloaded example:</label>
+            <div class="example-controls">
+                <select id="exampleSelect">
+                    <option value="custom">Custom Problem</option>
+                    <option value="example1">Example 1 - Investment</option>
+                    <option value="example2">Example 2 - Production</option>
+                </select>
+                <button id="loadExample" class="btn btn-secondary">
+                    Load Example
+                </button>
+            </div>
+
+            <div class="table-title">
+                <h3>Payoff Matrix</h3>
+                <div class="button-group">
+                    <button id="addAlternative" class="btn btn-small">+ Alternative</button>
+                    <button id="addState" class="btn btn-small">+ State</button>
+                </div>
+            </div>
+
+            <p class="hint">
+                Edit the names and payoff values directly in the table.
+                Higher payoffs are considered better.
+            </p>
+
+            <div class="table-wrapper">
+                <table id="payoffTable">
+                    <thead></thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+
+            <div class="table-title probability-title">
+                <h3>State Probabilities</h3>
+            </div>
+
+            <p class="hint">
+                Enter probabilities between 0 and 1. Their total must equal 1.
+            </p>
+
+            <div class="table-wrapper">
+                <table id="probabilityTable">
+                    <thead></thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+
+            <p id="validationMessage" class="validation"></p>
+        </section>
+
+        <!-- CRITERIA -->
+        <section class="panel">
+            <div class="section-heading">
+                <div>
+                    <span class="number">02</span>
+                    <h2>Decision Criteria</h2>
+                </div>
+                <span class="tag">ANALYSIS</span>
+            </div>
+
+            <p class="hint">
+                The dashboard calculates all four criteria automatically.
+                Ties are displayed when multiple alternatives share the best value.
+            </p>
+
+            <div class="criteria-grid">
+
+                <article class="criterion-card">
+                    <span class="criterion-label">OPTIMISTIC</span>
+                    <h3>Maximax</h3>
+                    <p>Choose the alternative with the highest possible payoff.</p>
+                    <div class="result-value" id="maximaxValue">-</div>
+                    <div class="winner" id="maximaxWinner">Waiting for data</div>
+                </article>
+
+                <article class="criterion-card">
+                    <span class="criterion-label">PESSIMISTIC</span>
+                    <h3>Maximin</h3>
+                    <p>Choose the alternative with the highest minimum payoff.</p>
+                    <div class="result-value" id="maximinValue">-</div>
+                    <div class="winner" id="maximinWinner">Waiting for data</div>
+                </article>
+
+                <article class="criterion-card">
+                    <span class="criterion-label">REGRET</span>
+                    <h3>Minimax Regret</h3>
+                    <p>Choose the alternative with the lowest maximum regret.</p>
+                    <div class="result-value" id="regretValue">-</div>
+                    <div class="winner" id="regretWinner">Waiting for data</div>
+                </article>
+
+                <article class="criterion-card">
+                    <span class="criterion-label">PROBABILISTIC</span>
+                    <h3>EMV / Bayes</h3>
+                    <p>Choose the alternative with the highest expected monetary value.</p>
+                    <div class="result-value" id="emvValue">-</div>
+                    <div class="winner" id="emvWinner">Waiting for data</div>
+                </article>
+
+            </div>
+
+            <h3 class="subheading">Detailed Results</h3>
+
+            <div class="table-wrapper">
+                <table id="resultsTable">
+                    <thead>
+                        <tr>
+                            <th>Alternative</th>
+                            <th>Maximum</th>
+                            <th>Minimum</th>
+                            <th>Maximum Regret</th>
+                            <th>EMV</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+
+            <h3 class="subheading">Regret Matrix</h3>
+            <div class="table-wrapper">
+                <table id="regretTable">
+                    <thead></thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- STAGED FILTERING -->
+        <section class="panel">
+            <div class="section-heading">
+                <div>
+                    <span class="number">03</span>
+                    <h2>Staged Filtering</h2>
+                </div>
+                <span class="tag">ELIMINATION PROCESS</span>
+            </div>
+
+            <p class="hint">
+                Select the criteria and their order. At each stage, only
+                alternatives with the best value for that criterion survive.
+                Tied alternatives are retained.
+            </p>
+
+            <div class="filter-settings">
+                <label for="filter1">Stage 1</label>
+                <select id="filter1">
+                    <option value="maximax">Maximax</option>
+                    <option value="maximin">Maximin</option>
+                    <option value="regret">Minimax Regret</option>
+                    <option value="emv">EMV / Bayes</option>
+                </select>
+
+                <label for="filter2">Stage 2</label>
+                <select id="filter2">
+                    <option value="maximin">Maximin</option>
+                    <option value="maximax">Maximax</option>
+                    <option value="regret">Minimax Regret</option>
+                    <option value="emv">EMV / Bayes</option>
+                </select>
+
+                <label for="filter3">Stage 3</label>
+                <select id="filter3">
+                    <option value="regret">Minimax Regret</option>
+                    <option value="maximax">Maximax</option>
+                    <option value="maximin">Maximin</option>
+                    <option value="emv">EMV / Bayes</option>
+                </select>
+
+                <label for="filter4">Stage 4</label>
+                <select id="filter4">
+                    <option value="emv">EMV / Bayes</option>
+                    <option value="maximax">Maximax</option>
+                    <option value="maximin">Maximin</option>
+                    <option value="regret">Minimax Regret</option>
+                </select>
+            </div>
+
+            <div id="filterSteps" class="filter-steps"></div>
+
+            <h3 class="subheading">Filtering Flow Diagram</h3>
+            <div id="flowDiagram" class="flow-diagram"></div>
+
+            <div id="filterConclusion" class="conclusion"></div>
+        </section>
+
+        <!-- AI RECORD -->
+        <section class="panel ai-panel">
+            <div class="section-heading">
+                <div>
+                    <span class="number">04</span>
+                    <h2>AI Development Record</h2>
+                </div>
+            </div>
+
+            <p>
+                This webpage was developed with the assistance of ChatGPT.
+                The development conversation is available below.
+            </p>
+
+            <!-- Replace this URL with your shared ChatGPT conversation link -->
+            <a id="aiLink" href="https://chatgpt.com/share/6ae91196-ed2c-83e9-adfc-41677665aaf7" target="_blank"
+               rel="noopener noreferrer" class="btn btn-primary">
+                View AI Development Conversation ↗
+            </a>
+
+            <p class="hint">
+                Replace the link in the HTML with your actual shared conversation URL.
+            </p>
+        </section>
+
+        <footer>
+            <p>Decision Making Dashboard · Grade 10 · Criterion C10</p>
+            <p>Interactive Mathematics Project</p>
+        </footer>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

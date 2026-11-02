@@ -1,0 +1,691 @@
+
+/* ==========================================
+   DECISION LAB — EDITORIAL DESIGN
+   Grade 10 | C10
+========================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+/* 01. GLOBAL */
+
+:root {
+    --paper: #F3EFE6;
+    --ink: #171717;
+    --blue: #3155D9;
+    --orange: #E76A45;
+    --stone: #D9D3C7;
+    --muted: #77736C;
+    --white: #FFFEFA;
+    --green: #357A55;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.6;
+}
+
+::selection {
+    background: var(--blue);
+    color: white;
+}
+
+.container {
+    width: 90%;
+    max-width: 1320px;
+    margin: 0 auto;
+}
+
+/* 02. NAVIGATION */
+
+.topbar {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 19px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 3px solid var(--blue);
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.brand-icon {
+    width: 43px;
+    height: 43px;
+    background: var(--blue);
+    display: grid;
+    place-items: center;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 23px;
+    font-weight: 700;
+    border-radius: 0;
+}
+
+.brand h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 17px;
+    letter-spacing: -0.5px;
+}
+
+.brand p {
+    font-family: 'DM Mono', monospace;
+    color: #B9B5AB;
+    font-size: 9px;
+    letter-spacing: 2px;
+}
+
+.status {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    color: #A9D6B5;
+    letter-spacing: 1px;
+}
+
+/* 03. HERO */
+
+.intro {
+    margin: 45px 0 30px;
+    padding: 55px 45px;
+    background: var(--blue);
+    color: white;
+    border-radius: 0;
+    position: relative;
+    overflow: hidden;
+    min-height: 250px;
+    display: flex;
+    align-items: center;
+}
+
+.intro::after {
+    content: "C10";
+    position: absolute;
+    right: 25px;
+    bottom: -55px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: clamp(120px, 24vw, 270px);
+    line-height: 1;
+    color: rgba(255,255,255,0.10);
+    pointer-events: none;
+}
+
+.intro > div {
+    position: relative;
+    z-index: 1;
+}
+
+.eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 3px;
+    margin-bottom: 16px;
+    color: #D9E1FF;
+}
+
+.intro h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(30px, 5vw, 52px);
+    line-height: 1.08;
+    letter-spacing: -2px;
+    max-width: 720px;
+    margin-bottom: 15px;
+}
+
+.intro p:last-child {
+    color: #E0E5FF;
+    font-size: 14px;
+}
+
+/* 04. SECTIONS */
+
+.panel {
+    background: var(--white);
+    border: 1px solid var(--stone);
+    border-radius: 0;
+    padding: 32px;
+    margin-bottom: 28px;
+    box-shadow: 5px 5px 0 rgba(23,23,23,0.07);
+}
+
+.section-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    padding-bottom: 19px;
+    margin-bottom: 25px;
+    border-bottom: 2px solid var(--ink);
+}
+
+.section-heading > div {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.section-heading h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 23px;
+    letter-spacing: -0.8px;
+}
+
+.number {
+    background: var(--orange);
+    color: white;
+    border-radius: 0;
+    font-family: 'DM Mono', monospace;
+    padding: 7px 10px;
+    font-size: 12px;
+}
+
+.tag {
+    background: transparent;
+    color: var(--blue);
+    border: 1px solid var(--blue);
+    border-radius: 0;
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 1px;
+    padding: 6px 9px;
+}
+
+/* 05. TEXT */
+
+h3 {
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+label {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.7px;
+    margin-bottom: 9px;
+}
+
+.hint {
+    color: var(--muted);
+    font-size: 12px;
+    margin-bottom: 17px;
+}
+
+.subheading {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 19px;
+    margin: 30px 0 15px;
+    padding-left: 12px;
+    border-left: 4px solid var(--orange);
+}
+
+/* 06. BUTTONS AND INPUTS */
+
+select,
+input {
+    font-family: 'DM Sans', sans-serif;
+}
+
+select {
+    background: var(--paper);
+    border: 1px solid var(--stone);
+    border-radius: 0;
+    padding: 12px;
+    color: var(--ink);
+    font-size: 13px;
+    cursor: pointer;
+}
+
+select:focus,
+input:focus {
+    outline: 2px solid var(--blue);
+    outline-offset: 2px;
+}
+
+.example-controls {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 35px;
+}
+
+.example-controls select {
+    flex: 1;
+}
+
+.btn {
+    border: 1px solid var(--ink);
+    border-radius: 0;
+    padding: 12px 18px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: 0.2s ease;
+    text-decoration: none;
+}
+
+.btn:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 3px 3px 0 var(--ink);
+    filter: none;
+}
+
+.btn-primary {
+    background: var(--blue);
+    color: white;
+    border-color: var(--blue);
+}
+
+.btn-primary:hover {
+    box-shadow: 3px 3px 0 var(--ink);
+}
+
+.btn-secondary {
+    background: var(--ink);
+    color: white;
+}
+
+.btn-small {
+    background: var(--paper);
+    color: var(--ink);
+    border-color: var(--stone);
+    padding: 9px 12px;
+}
+
+.btn-danger {
+    background: #FCEAE4;
+    color: #A63B25;
+    border-color: #E7B5A8;
+    padding: 7px 10px;
+}
+
+/* 07. TABLES */
+
+.table-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 22px 0 15px;
+}
+
+.table-title h3 {
+    font-size: 18px;
+    letter-spacing: -0.5px;
+}
+
+.button-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    margin-bottom: 25px;
+    border: 1px solid var(--stone);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 500px;
+    font-size: 13px;
+}
+
+th {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 15px 12px;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    white-space: nowrap;
+}
+
+td {
+    padding: 12px;
+    border-bottom: 1px solid #E8E2D7;
+    text-align: center;
+}
+
+tbody tr:nth-child(even) {
+    background: #F8F5EF;
+}
+
+tbody tr:hover {
+    background: #EDEFFC;
+}
+
+.cell-input {
+    width: 85px;
+    padding: 9px;
+    border: 1px solid var(--stone);
+    border-radius: 0;
+    background: white;
+    text-align: center;
+    color: var(--ink);
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+}
+
+.name-input {
+    width: 120px;
+    text-align: left;
+    font-family: 'DM Sans', sans-serif;
+}
+
+/* 08. VALIDATION */
+
+.validation {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    min-height: 20px;
+    margin-top: 10px;
+}
+
+.validation.error {
+    color: #BD452F;
+}
+
+.validation.success {
+    color: var(--green);
+}
+
+/* 09. CRITERIA CARDS */
+
+.criteria-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin: 25px 0 35px;
+}
+
+.criterion-card {
+    background: var(--paper);
+    border: 1px solid var(--stone);
+    border-top: 5px solid var(--blue);
+    border-radius: 0;
+    padding: 19px;
+    transition: 0.2s;
+}
+
+.criterion-card:nth-child(2) {
+    border-top-color: var(--orange);
+}
+
+.criterion-card:nth-child(3) {
+    border-top-color: var(--ink);
+}
+
+.criterion-card:nth-child(4) {
+    border-top-color: var(--green);
+}
+
+.criterion-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 4px 4px 0 var(--stone);
+}
+
+.criterion-label {
+    font-family: 'DM Mono', monospace;
+    color: var(--muted);
+    font-size: 9px;
+    letter-spacing: 1px;
+}
+
+.criterion-card h3 {
+    font-size: 18px;
+    margin: 7px 0;
+}
+
+.criterion-card p {
+    font-size: 11px;
+    color: var(--muted);
+    min-height: 55px;
+}
+
+.result-value {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 35px;
+    font-weight: 700;
+    color: var(--blue);
+    margin-top: 15px;
+    letter-spacing: -1px;
+}
+
+.winner {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--green);
+    margin-top: 7px;
+    overflow-wrap: anywhere;
+}
+
+/* 10. STAGED FILTERING */
+
+.filter-settings {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin: 25px 0;
+    padding: 20px;
+    background: var(--paper);
+    border: 1px solid var(--stone);
+}
+
+.filter-settings select {
+    width: 100%;
+}
+
+.filter-steps {
+    display: grid;
+    gap: 12px;
+    margin-top: 25px;
+}
+
+.filter-step {
+    background: var(--paper);
+    border: 1px solid var(--stone);
+    border-left: 5px solid var(--blue);
+    border-radius: 0;
+    padding: 20px;
+}
+
+.filter-step h4 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 16px;
+    margin-bottom: 12px;
+}
+
+.filter-step p {
+    font-size: 12px;
+    margin: 5px 0;
+}
+
+.survivors {
+    color: var(--green);
+    font-weight: 700;
+}
+
+.eliminated {
+    color: #BD452F;
+}
+
+/* 11. FLOW DIAGRAM */
+
+.flow-diagram {
+    background: var(--paper);
+    padding: 25px 15px;
+    border: 1px solid var(--stone);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 9px;
+    margin: 20px 0;
+}
+
+.flow-node {
+    width: 100%;
+    max-width: 500px;
+    text-align: center;
+    padding: 17px;
+    background: var(--white);
+    border: 1px solid var(--ink);
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+}
+
+.flow-node.final {
+    background: var(--blue);
+    border-color: var(--blue);
+    color: white;
+    font-weight: 500;
+}
+
+.flow-arrow {
+    color: var(--orange);
+    font-size: 25px;
+    font-weight: bold;
+    line-height: 1;
+}
+
+.conclusion {
+    padding: 20px;
+    background: #E8EDFF;
+    border-left: 5px solid var(--blue);
+    font-size: 13px;
+    font-weight: 600;
+}
+
+/* 12. AI RECORD */
+
+.ai-panel {
+    background: var(--ink);
+    color: var(--paper);
+    border-color: var(--ink);
+    box-shadow: 5px 5px 0 var(--orange);
+}
+
+.ai-panel .section-heading {
+    border-color: #5A5852;
+}
+
+.ai-panel .number {
+    background: var(--orange);
+}
+
+.ai-panel p {
+    color: #C4BFB4;
+    font-size: 13px;
+    margin-bottom: 18px;
+}
+
+.ai-panel .hint {
+    color: #A6A197;
+    margin-top: 15px;
+}
+
+/* 13. FOOTER */
+
+footer {
+    padding: 35px 10px;
+    text-align: center;
+    border-top: 1px solid var(--stone);
+    margin-top: 35px;
+    color: var(--muted);
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.5px;
+}
+
+/* 14. RESPONSIVE */
+
+@media (max-width: 900px) {
+
+    .criteria-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .filter-settings {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+
+    .container {
+        width: 94%;
+    }
+
+    .topbar {
+        padding: 15px 4%;
+    }
+
+    .brand h1 {
+        font-size: 14px;
+    }
+
+    .status {
+        display: none;
+    }
+
+    .intro {
+        margin-top: 25px;
+        padding: 30px 22px;
+    }
+
+    .intro h2 {
+        font-size: 31px;
+    }
+
+    .panel {
+        padding: 19px;
+    }
+
+    .section-heading h2 {
+        font-size: 17px;
+    }
+
+    .tag {
+        display: none;
+    }
+
+    .criteria-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .filter-settings {
+        grid-template-columns: 1fr;
+    }
+
+    .example-controls {
+        flex-direction: column;
+    }
+
+    .table-title {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .brand-icon {
+        width: 36px;
+        height: 36px;
+    }
+}
